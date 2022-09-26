@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: sample-nginx
+  namespace: openshift-gitops
+spec:
+  generators:
+  - clusterDecisionResource:
+      configMapRef: acm-placement
+      labelSelector:
+        matchLabels:
+          cluster.open-cluster-management.io/placement: placement-standalone-clusters
+      requeueAfterSeconds: 180
+  template:
+    metadata:
+      name: 'sample-nginx-{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/jwilms1971/acm-teams.git'
+        targetRevision: main
+        path: team-blue/input-nginx
+      destination:
+        namesapce: sample-nginx
+        server: '{{server}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - PruneLast=true
+      automated:
+        prune: true
+        selfHeal: true
