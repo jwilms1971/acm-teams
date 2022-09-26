@@ -15,8 +15,17 @@ spec:
       labels:
         app: nginx
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsNonRoot: true
       containers:
         - name: nginx
           image: bitnami/nginx:1.21.6
           ports:
             - containerPort: 8080
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
