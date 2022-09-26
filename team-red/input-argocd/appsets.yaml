@@ -9,7 +9,7 @@ spec:
       configMapRef: acm-placement
       labelSelector:
         matchLabels:
-          cluster.open-cluster-management.io/placement: placement-standalone-clusters
+          cluster.open-cluster-management.io/placement: placement-red-standalone-clusters
       requeueAfterSeconds: 180
   template:
     metadata:
@@ -19,7 +19,7 @@ spec:
       source:
         repoURL: 'https://github.com/jwilms1971/acm-teams.git'
         targetRevision: main
-        path: team-blue/input-nginx
+        path: team-red/input-nginx
       destination:
         namesapce: sample-nginx
         server: '{{server}}'
