@@ -21,7 +21,7 @@ spec:
         targetRevision: main
         path: team-red/input-nginx
       destination:
-        namesapce: sample-nginx
+        namespace: sample-nginx
         server: '{{server}}'
       syncPolicy:
         syncOptions:
