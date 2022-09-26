@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: sample-nginx
+  name: nginx-sample
   namespace: openshift-gitops
 spec:
   generators:
@@ -21,7 +21,7 @@ spec:
         targetRevision: main
         path: team-red/input-nginx
       destination:
-        namespace: sample-nginx
+        namespace: nginx-sample
         server: '{{server}}'
       syncPolicy:
         syncOptions:
