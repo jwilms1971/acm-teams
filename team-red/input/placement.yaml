@@ -8,12 +8,10 @@ spec:
     - red-cluster-set
   predicates:
     - requiredClusterSelector:
-        labelSelector:
-          matchLabels:
-            env: dev
+            #        labelSelector:
+            #          matchLabels:
+            #            env: dev
         claimSelector:
           matchExpressions:
-            - key: platform.open-cluster-management.io
-              operator: In
-              values:
-                - GCP
+            - {key: platform.open-cluster-management.io, operator: In, values: ["AWS"]}
+            - {key: controlplanetopology.openshift.io, operator: In, values: ["External"]}
