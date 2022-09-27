@@ -1,8 +1,19 @@
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
-  name: placement-red-standalone-clusters
-  namespace: openshift-gitops
+  name: placement-red-standalone-clusters-dev
+  namespace: red-gitops
 spec:
   clusterSets:
     - red-cluster-set
+  predicates:
+    - requiredClusterSelector:
+        labelSelector:
+          matchLabels:
+            env: dev
+        claimSelector:
+          matchExpressions:
+            - key: platform.open-cluster-management.io
+              operator: In
+              values:
+                - GCP

@@ -2,14 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: nginx-sample
-  namespace: openshift-gitops
+  namespace: red-gitops
 spec:
   generators:
   - clusterDecisionResource:
       configMapRef: acm-placement
       labelSelector:
         matchLabels:
-          cluster.open-cluster-management.io/placement: placement-red-standalone-clusters
+          cluster.open-cluster-management.io/placement: placement-red-standalone-clusters-dev
       requeueAfterSeconds: 180
   template:
     metadata:
